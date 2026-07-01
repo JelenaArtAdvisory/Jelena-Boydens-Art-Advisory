@@ -19,8 +19,8 @@ export function Hero() {
 
         <Reveal delay={80} className="relative mt-7">
           <PlaceholderImage
-            src="/images/hero.jpg"
-            alt="A calm, sunlit living room with a framed artwork on the wall, opening onto greenery"
+            src="/images/hero-interior.jpg"
+            alt="A calm, minimalist living room in warm neutral tones with a large abstract painting on the wall, opening onto greenery through a sliding glass wall"
             label="[ hero photograph ]"
             aspect="aspect-[4/5] sm:aspect-[16/9]"
             rounded="rounded-4xl"
