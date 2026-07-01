@@ -20,7 +20,8 @@ export function Hero() {
         <div className="relative mt-7">
           <Reveal delay={80}>
             <PlaceholderImage
-              alt="A collected, art-filled interior in soft daylight"
+              src="/images/hero.jpg"
+              alt="A calm, sunlit living room with a framed artwork on the wall, opening onto greenery"
               label="[ hero photograph ]"
               aspect="aspect-[4/5] sm:aspect-[16/9]"
               rounded="rounded-4xl"
