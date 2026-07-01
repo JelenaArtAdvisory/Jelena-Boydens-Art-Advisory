@@ -34,7 +34,7 @@ export function Hero() {
           />
 
           {/* signature device: large heading sitting over the photograph */}
-          <h1 className="absolute inset-x-0 bottom-0 z-10 max-w-4xl px-6 pb-7 font-heading text-[2.3rem] font-medium leading-[1.05] tracking-tight text-white sm:px-8 sm:pb-9 sm:text-6xl md:text-7xl">
+          <h1 className="absolute inset-x-0 bottom-0 z-10 max-w-4xl px-6 pb-7 font-heading text-[2.3rem] font-semibold leading-[1.08] tracking-tight text-white sm:px-8 sm:pb-9 sm:text-6xl md:text-7xl">
             Hand-picked art, chosen with insight for your space.
           </h1>
         </Reveal>

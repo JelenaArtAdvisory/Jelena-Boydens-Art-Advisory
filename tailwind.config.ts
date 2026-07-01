@@ -18,9 +18,8 @@ const config: Config = {
         milkshakeDeep: "#D89B96",
       },
       fontFamily: {
-        // Headings: StudioSimms (paid, self-hosted) with Fraunces as the
-        // free fallback until the licensed font files are supplied.
-        // See src/lib/fonts.ts for the swap instructions.
+        // Headings: Playfair Display (client's choice). Can be swapped for the
+        // paid StudioSimms font later — see src/lib/fonts.ts for how.
         heading: ["var(--font-heading)", "Georgia", "serif"],
         body: ["var(--font-body)", "system-ui", "sans-serif"],
       },

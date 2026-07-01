@@ -1,4 +1,4 @@
-import { Poppins, Fraunces } from "next/font/google";
+import { Poppins, Playfair_Display } from "next/font/google";
 // import localFont from "next/font/local";
 
 /**
@@ -12,19 +12,18 @@ export const body = Poppins({
 });
 
 /**
- * TODO(StudioSimms): headings should use the licensed StudioSimms typeface.
- * Until those font files are purchased, Fraunces (a free, similarly
- * characterful editorial serif) stands in so the site builds and looks
- * right today. See /fonts/README.md for the exact swap-in steps.
+ * Headings — Playfair Display (chosen by the client): a high-contrast,
+ * editorial serif with a chic gallery/fashion feel.
  *
- * To swap in StudioSimms once you have the files:
- *   1. Drop the .woff2 files into /fonts
- *   2. Delete/comment the `Fraunces` block below
+ * NOTE: The design system originally specified the paid StudioSimms font.
+ * If you ever want to switch to StudioSimms instead:
+ *   1. Drop the .woff2 files into /fonts (see /fonts/README.md)
+ *   2. Delete/comment the `Playfair_Display` block below
  *   3. Uncomment the `localFont` block below and point it at your files
  */
-export const heading = Fraunces({
+export const heading = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-heading",
   display: "swap",
