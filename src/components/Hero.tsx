@@ -17,34 +17,27 @@ export function Hero() {
           <Eyebrow>Art-historical advice · private interiors</Eyebrow>
         </Reveal>
 
-        <div className="relative mt-7">
-          <Reveal delay={80}>
-            <PlaceholderImage
-              src="/images/hero.jpg"
-              alt="A calm, sunlit living room with a framed artwork on the wall, opening onto greenery"
-              label="[ hero photograph ]"
-              aspect="aspect-[4/5] sm:aspect-[16/9]"
-              rounded="rounded-4xl"
-              priority
-            />
-          </Reveal>
-
-          {/* subtle scrim so a heading placed over a real photo stays legible */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 rounded-b-4xl bg-gradient-to-t from-black/10 to-transparent"
+        <Reveal delay={80} className="relative mt-7">
+          <PlaceholderImage
+            src="/images/hero.jpg"
+            alt="A calm, sunlit living room with a framed artwork on the wall, opening onto greenery"
+            label="[ hero photograph ]"
+            aspect="aspect-[4/5] sm:aspect-[16/9]"
+            rounded="rounded-4xl"
+            priority
           />
 
-          {/* signature device: heading overlapping the photograph */}
-          <Reveal
-            delay={180}
-            className="relative z-10 -mt-14 max-w-3xl px-1 sm:-mt-20 md:-mt-28"
-          >
-            <h1 className="font-heading text-[2.6rem] font-medium leading-[1.05] tracking-tight text-black sm:text-6xl md:text-7xl">
-              Real art, chosen with insight for your space.
-            </h1>
-          </Reveal>
-        </div>
+          {/* dark scrim at the bottom so the white heading stays legible over the photo */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 rounded-b-4xl bg-gradient-to-t from-black/70 via-black/30 to-transparent"
+          />
+
+          {/* signature device: large heading sitting over the photograph */}
+          <h1 className="absolute inset-x-0 bottom-0 z-10 max-w-4xl px-6 pb-7 font-heading text-[2.3rem] font-medium leading-[1.05] tracking-tight text-white sm:px-8 sm:pb-9 sm:text-6xl md:text-7xl">
+            Hand-picked art, chosen with insight for your space.
+          </h1>
+        </Reveal>
 
         <Reveal delay={260} className="mt-9 max-w-xl">
           <p className="text-lg leading-relaxed text-muted">
