@@ -59,6 +59,9 @@ export function Contact() {
 
           <dl className="mt-9 space-y-3 text-sm text-black">
             <div className="flex gap-2">
+              <dd>{t.contact.region}</dd>
+            </div>
+            <div className="flex gap-2">
               <dt className="text-muted">{t.contact.labelEmail}</dt>
               <dd>
                 <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
@@ -73,9 +76,6 @@ export function Contact() {
                   +32 468 32 67 88
                 </a>
               </dd>
-            </div>
-            <div className="flex gap-2">
-              <dd>{t.contact.region}</dd>
             </div>
             <div className="flex gap-2">
               <dt className="text-muted">{t.contact.labelFollow}</dt>
