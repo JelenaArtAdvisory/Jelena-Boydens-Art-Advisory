@@ -34,10 +34,24 @@ export function Button({ children, href, variant = "primary", className }: Butto
     node.style.transform = "";
   }
 
+  // For in-page #hash links, scroll to the section ourselves. A plain #hash
+  // link does nothing when that hash is already in the URL, which made these
+  // buttons work only intermittently.
+  function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    if (!href.startsWith("#")) return;
+    event.preventDefault();
+    const target = document.getElementById(href.slice(1));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+      window.history.replaceState(null, "", href);
+    }
+  }
+
   if (variant === "text") {
     return (
       <Link
         href={href}
+        onClick={handleClick}
         className={cn(
           "link-underline inline-flex items-center gap-1.5 text-sm font-medium text-black",
           className,
@@ -52,6 +66,7 @@ export function Button({ children, href, variant = "primary", className }: Butto
     <Link
       ref={ref}
       href={href}
+      onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
