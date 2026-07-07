@@ -3,23 +3,34 @@ import { body, heading, wordmark } from "@/lib/fonts";
 import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
-const SITE_URL = "https://www.jelenaboydens.com"; // TODO: update once the domain is live
+const SITE_URL = "https://www.boydensartadvisory.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Jelena Boydens · Art Advisory",
+    default: "Jelena Boydens · Art Advisory — kunstadvies voor je interieur",
     template: "%s — Jelena Boydens Art Advisory",
   },
   description:
-    "Art-historical advice for private interiors. I help you find real art that fits your space, your taste and your budget — with montages that show a work in your home before you buy.",
+    "Kunsthistorisch advies voor particuliere interieurs in Brugge & West-Vlaanderen. Ik help je echte kunst vinden die past bij je ruimte, je smaak en je budget — met montages die een werk in je huis tonen vóór je koopt.",
+  keywords: [
+    "kunstadvies",
+    "art advisory",
+    "kunst kopen",
+    "kunsthistorica",
+    "Brugge",
+    "West-Vlaanderen",
+    "Jelena Boydens",
+    "interieur kunst",
+  ],
+  alternates: { canonical: SITE_URL },
   openGraph: {
     title: "Jelena Boydens · Art Advisory",
     description:
-      "Art-historical advice for private interiors. Real art, chosen with insight for your space.",
+      "Kunsthistorisch advies voor particuliere interieurs. Echte kunst, met inzicht gekozen voor jouw ruimte.",
     url: SITE_URL,
     siteName: "Jelena Boydens Art Advisory",
-    locale: "en_US",
+    locale: "nl_BE",
     type: "website",
     // TODO: add an Open Graph image (e.g. /public/og.jpg, 1200x630) and
     // reference it here once real photography exists: images: ["/og.jpg"]
@@ -27,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jelena Boydens · Art Advisory",
-    description: "Art-historical advice for private interiors.",
+    description: "Kunsthistorisch advies voor particuliere interieurs.",
   },
 };
 
