@@ -34,11 +34,20 @@ export function Header() {
     };
   }, [menuOpen]);
 
-  // Close the mobile menu AND lift the scroll lock synchronously, so the
-  // anchor link (e.g. #contact) can actually scroll the page on tap.
-  function closeMenu() {
+  // Scroll to a section ourselves and close the mobile menu. Handling the
+  // scroll here (instead of relying on the #hash link) fixes the flaky menu:
+  // a plain #hash link does nothing when that hash is already in the URL, and
+  // the open menu's scroll lock could block it. This always scrolls.
+  function goToSection(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (!href.startsWith("#")) return;
+    event.preventDefault();
     document.body.style.overflow = "";
     setMenuOpen(false);
+    const target = document.getElementById(href.slice(1));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+      window.history.replaceState(null, "", href);
+    }
   }
 
   return (
@@ -51,13 +60,22 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-8">
-        <Link href="#top" className="text-sm font-semibold tracking-tight text-black">
+        <Link
+          href="#top"
+          onClick={(e) => goToSection(e, "#top")}
+          className="text-sm font-semibold tracking-tight text-black"
+        >
           Jelena Boydens <span className="text-muted font-normal">· Art Advisory</span>
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex">
           {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="link-underline text-sm text-black">
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={(e) => goToSection(e, link.href)}
+              className="link-underline text-sm text-black"
+            >
               {t.nav[link.key]}
             </Link>
           ))}
@@ -67,6 +85,7 @@ export function Header() {
           <LanguageToggle />
           <Link
             href="#contact"
+            onClick={(e) => goToSection(e, "#contact")}
             className="inline-flex items-center justify-center rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition-transform duration-300 ease-apple hover:scale-[1.03] hover:shadow-soft"
           >
             {t.nav.cta}
@@ -107,7 +126,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={closeMenu}
+                onClick={(e) => goToSection(e, link.href)}
                 className="py-3 text-base text-black"
               >
                 {t.nav[link.key]}
@@ -115,7 +134,7 @@ export function Header() {
             ))}
             <Link
               href="#contact"
-              onClick={closeMenu}
+              onClick={(e) => goToSection(e, "#contact")}
               className="mt-3 inline-flex items-center justify-center rounded-full bg-black px-6 py-3.5 text-sm font-medium text-white"
             >
               {t.nav.cta}
