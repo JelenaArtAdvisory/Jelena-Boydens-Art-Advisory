@@ -6,25 +6,43 @@ import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { useT } from "@/lib/i18n";
 
-// TODO: replace with Formspree / a Next.js API route + email service (e.g.
-// Resend) once there's a backend. Until then this opens the visitor's own
-// mail client via a mailto: link — nothing is sent from the server.
 const CONTACT_EMAIL = "info@boydensartadvisory.com";
+
+// Formspree endpoint — submissions land in the info@ inbox. Manage/upgrade at formspree.io.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mzdlwloz";
 
 const inputClass =
   "w-full rounded-2xl border border-black/15 bg-white px-5 py-3.5 text-sm text-black placeholder:text-muted/70 focus:outline-none";
+
+type Status = "idle" | "sending" | "success" | "error";
 
 export function Contact() {
   const t = useT();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(event: React.FormEvent) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const subject = encodeURIComponent(`Introduction — ${name || "new enquiry"}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    setStatus("sending");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -92,56 +110,68 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={100}>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="contact-name" className="sr-only">
-                Name
-              </label>
-              <input
-                id="contact-name"
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder={t.contact.placeholderName}
-                className={inputClass}
-              />
+          {status === "success" ? (
+            <div className="flex min-h-[18rem] flex-col items-center justify-center rounded-3xl border border-black/10 bg-offwhite p-8 text-center">
+              <p className="font-heading text-xl leading-relaxed text-black">
+                {t.contact.success}
+              </p>
             </div>
-            <div>
-              <label htmlFor="contact-email" className="sr-only">
-                Email
-              </label>
-              <input
-                id="contact-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t.contact.placeholderEmail}
-                className={inputClass}
-              />
-            </div>
-            <div>
-              <label htmlFor="contact-message" className="sr-only">
-                Message
-              </label>
-              <textarea
-                id="contact-message"
-                required
-                rows={5}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder={t.contact.placeholderMessage}
-                className={`${inputClass} rounded-3xl`}
-              />
-            </div>
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-black px-7 py-3.5 text-sm font-medium text-white transition-transform duration-300 ease-apple hover:scale-[1.03] hover:shadow-soft"
-            >
-              {t.contact.submit}
-            </button>
-          </form>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="contact-name" className="sr-only">
+                  {t.contact.placeholderName}
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder={t.contact.placeholderName}
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className="sr-only">
+                  {t.contact.placeholderEmail}
+                </label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t.contact.placeholderEmail}
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-message" className="sr-only">
+                  {t.contact.placeholderMessage}
+                </label>
+                <textarea
+                  id="contact-message"
+                  required
+                  rows={5}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder={t.contact.placeholderMessage}
+                  className={`${inputClass} rounded-3xl`}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="inline-flex items-center justify-center rounded-full bg-black px-7 py-3.5 text-sm font-medium text-white transition-transform duration-300 ease-apple hover:scale-[1.03] hover:shadow-soft disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {status === "sending" ? t.contact.sending : t.contact.submit}
+              </button>
+              {status === "error" && (
+                <p className="text-sm text-milkshakeDeep">{t.contact.error}</p>
+              )}
+            </form>
+          )}
         </Reveal>
       </div>
     </Section>

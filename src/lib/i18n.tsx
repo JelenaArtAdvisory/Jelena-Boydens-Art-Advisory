@@ -98,6 +98,10 @@ export const dict = {
       placeholderEmail: "E-mail",
       placeholderMessage: "Vertel me iets over je ruimte, of stel een vraag",
       submit: "Verstuur bericht",
+      sending: "Versturen…",
+      success: "Bedankt! Je bericht is verzonden. Ik neem snel contact met je op.",
+      error:
+        "Er ging iets mis. Probeer het opnieuw of mail rechtstreeks naar info@boydensartadvisory.com.",
     },
     slider: { before: "Voor", after: "Na" },
     footer: { privacy: "Privacybeleid", vat: "BTW" },
@@ -180,6 +184,10 @@ export const dict = {
       placeholderEmail: "Email",
       placeholderMessage: "Tell me a little about your space, or ask a question",
       submit: "Send message",
+      sending: "Sending…",
+      success: "Thank you! Your message has been sent. I'll be in touch soon.",
+      error:
+        "Something went wrong. Please try again or email info@boydensartadvisory.com directly.",
     },
     slider: { before: "Before", after: "After" },
     footer: { privacy: "Privacy policy", vat: "VAT" },
