@@ -34,6 +34,13 @@ export function Header() {
     };
   }, [menuOpen]);
 
+  // Close the mobile menu AND lift the scroll lock synchronously, so the
+  // anchor link (e.g. #contact) can actually scroll the page on tap.
+  function closeMenu() {
+    document.body.style.overflow = "";
+    setMenuOpen(false);
+  }
+
   return (
     <header
       className={cn(
@@ -100,7 +107,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMenu}
                 className="py-3 text-base text-black"
               >
                 {t.nav[link.key]}
@@ -108,7 +115,7 @@ export function Header() {
             ))}
             <Link
               href="#contact"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
               className="mt-3 inline-flex items-center justify-center rounded-full bg-black px-6 py-3.5 text-sm font-medium text-white"
             >
               {t.nav.cta}
