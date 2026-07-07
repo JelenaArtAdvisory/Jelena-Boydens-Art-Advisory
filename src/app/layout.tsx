@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s — Jelena Boydens Art Advisory",
   },
   description:
-    "Kunsthistorisch advies voor particuliere interieurs in België. Ik help je echte kunst vinden die past bij je ruimte, je smaak en je budget — met montages die een werk in je huis tonen vóór je koopt.",
+    "Kunsthistorisch advies voor particuliere en zakelijke interieurs in België. Ik help je echte kunst vinden die past bij je ruimte, je smaak en je budget — met montages die een werk in je huis tonen vóór je koopt.",
   keywords: [
     "kunstadvies",
     "art advisory",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Jelena Boydens · Art Advisory",
     description:
-      "Kunsthistorisch advies voor particuliere interieurs. Echte kunst, met inzicht gekozen voor jouw ruimte.",
+      "Kunsthistorisch advies voor particuliere en zakelijke interieurs. Echte kunst, met inzicht gekozen voor jouw ruimte.",
     url: SITE_URL,
     siteName: "Jelena Boydens Art Advisory",
     locale: "nl_BE",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jelena Boydens · Art Advisory",
-    description: "Kunsthistorisch advies voor particuliere interieurs.",
+    description: "Kunsthistorisch advies voor particuliere en zakelijke interieurs.",
   },
   verification: {
     google: "H5I_yhoaqvONDltLd2kFnkoEDVUy94leAINNxa0rTpA",
@@ -73,7 +73,7 @@ const structuredData = {
       name: "Jelena Boydens Art Advisory",
       url: SITE_URL,
       image: `${SITE_URL}/images/jelena-portrait.jpg`,
-      description: "Kunsthistorisch advies voor particuliere interieurs.",
+      description: "Kunsthistorisch advies voor particuliere en zakelijke interieurs.",
       email: "info@boydensartadvisory.com",
       telephone: "+32468326788",
       areaServed: "Brugge & West-Vlaanderen",
