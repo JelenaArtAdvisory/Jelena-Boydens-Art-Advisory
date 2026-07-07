@@ -51,6 +51,7 @@ export const metadata: Metadata = {
 const SOCIAL_PROFILES = [
   "https://www.instagram.com/learnbylena/",
   "https://www.youtube.com/@LearnByLena",
+  "https://www.tiktok.com/@learnbylena",
 ];
 
 const structuredData = {
