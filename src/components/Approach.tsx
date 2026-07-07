@@ -4,40 +4,24 @@ import { useState } from "react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
+import { useT } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-const STEPS = [
-  {
-    title: "Conversation at home",
-    description:
-      "We look at the space together and uncover your style — what moves you, what doesn't, and what suits how you live.",
-  },
-  {
-    title: "Curated proposal",
-    description:
-      "You receive a selection of works with notes on the artist and the price, plus montages showing each work in your interior.",
-  },
-  {
-    title: "Purchase & placement",
-    description:
-      "We refine until it's right. I guide the purchase and think along about placement.",
-  },
-];
-
 export function Approach() {
+  const t = useT();
   const [active, setActive] = useState(0);
 
   return (
-    <Section id="approach">
+    <Section id="approach" tone="offwhite">
       <Reveal>
-        <Eyebrow>How I work</Eyebrow>
+        <Eyebrow>{t.approach.eyebrow}</Eyebrow>
         <h2 className="mt-4 max-w-2xl font-heading text-3xl font-medium leading-tight tracking-tight text-black sm:text-4xl">
-          A calm, considered path from first visit to hanging the work
+          {t.approach.heading}
         </h2>
       </Reveal>
 
       <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-        {STEPS.map((step, i) => (
+        {t.approach.steps.map((step, i) => (
           <Reveal key={step.title} delay={i * 100}>
             <button
               type="button"

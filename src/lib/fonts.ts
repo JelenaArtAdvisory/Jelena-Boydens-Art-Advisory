@@ -1,4 +1,4 @@
-import { Poppins, Playfair_Display } from "next/font/google";
+import { Poppins, Playfair_Display, Jost } from "next/font/google";
 // import localFont from "next/font/local";
 
 /**
@@ -8,6 +8,19 @@ export const body = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-body",
+  display: "swap",
+});
+
+/**
+ * Wordmark font — Jost, a free geometric sans-serif used as a stand-in for the
+ * paid "Coco Gothic" (Canva). Currently only used for the "Jelena Boydens"
+ * wordmark in the hero. To swap in the real Coco Gothic web font later,
+ * replace this with a `localFont` block pointing at the .woff2 files.
+ */
+export const wordmark = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-wordmark",
   display: "swap",
 });
 

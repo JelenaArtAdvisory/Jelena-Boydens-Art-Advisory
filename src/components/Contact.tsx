@@ -4,16 +4,18 @@ import { useState } from "react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
+import { useT } from "@/lib/i18n";
 
 // TODO: replace with Formspree / a Next.js API route + email service (e.g.
 // Resend) once there's a backend. Until then this opens the visitor's own
 // mail client via a mailto: link — nothing is sent from the server.
-const CONTACT_EMAIL = "[ your email ]";
+const CONTACT_EMAIL = "info@boydensartadvisory.com";
 
 const inputClass =
   "w-full rounded-2xl border border-black/15 bg-white px-5 py-3.5 text-sm text-black placeholder:text-muted/70 focus:outline-none";
 
 export function Contact() {
+  const t = useT();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -26,30 +28,65 @@ export function Contact() {
   }
 
   return (
-    <Section id="contact" tone="offwhite">
+    <Section id="contact" tone="white">
       <div className="grid grid-cols-1 gap-14 md:grid-cols-2 md:gap-20">
         <Reveal>
-          <Eyebrow>Contact</Eyebrow>
+          <Eyebrow>{t.contact.eyebrow}</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-medium leading-tight tracking-tight text-black sm:text-4xl">
-            Let&rsquo;s meet
+            {t.contact.heading}
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-muted sm:text-lg">
-            An empty wall, a question, or simply curious? A first introduction is free and
-            without obligation.
+            {t.contact.body}
           </p>
 
           <dl className="mt-9 space-y-3 text-sm text-black">
             <div className="flex gap-2">
-              <dt className="text-muted">Email</dt>
-              <dd>{CONTACT_EMAIL}</dd>
+              <dt className="text-muted">{t.contact.labelEmail}</dt>
+              <dd>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
+                  {CONTACT_EMAIL}
+                </a>
+              </dd>
             </div>
             <div className="flex gap-2">
-              <dt className="text-muted">Instagram</dt>
-              <dd>@jelly.arterior</dd>
+              <dt className="text-muted">{t.contact.labelPhone}</dt>
+              <dd>
+                <a href="tel:+32468326788" className="hover:underline">
+                  +32 468 32 67 88
+                </a>
+              </dd>
             </div>
             <div className="flex gap-2">
-              <dt className="text-muted">Region</dt>
-              <dd>Bruges &amp; West Flanders — home visits by appointment</dd>
+              <dt className="text-muted">{t.contact.labelRegion}</dt>
+              <dd>{t.contact.region}</dd>
+            </div>
+            <div className="flex gap-2">
+              <dt className="text-muted">{t.contact.labelFollow}</dt>
+              <dd className="flex items-center gap-2.5">
+                <a
+                  href="https://www.instagram.com/learnbylena/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="Instagram — LearnByLena"
+                  className="text-black transition-opacity hover:opacity-60"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.youtube.com/@LearnByLena"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="YouTube — LearnByLena"
+                  className="text-black transition-opacity hover:opacity-60"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                </a>
+                <span>@learnbylena</span>
+              </dd>
             </div>
           </dl>
         </Reveal>
@@ -66,7 +103,7 @@ export function Contact() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
+                placeholder={t.contact.placeholderName}
                 className={inputClass}
               />
             </div>
@@ -80,7 +117,7 @@ export function Contact() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+                placeholder={t.contact.placeholderEmail}
                 className={inputClass}
               />
             </div>
@@ -94,7 +131,7 @@ export function Contact() {
                 rows={5}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Tell me a little about your space, or ask a question"
+                placeholder={t.contact.placeholderMessage}
                 className={`${inputClass} rounded-3xl`}
               />
             </div>
@@ -102,7 +139,7 @@ export function Contact() {
               type="submit"
               className="inline-flex items-center justify-center rounded-full bg-black px-7 py-3.5 text-sm font-medium text-white transition-transform duration-300 ease-apple hover:scale-[1.03] hover:shadow-soft"
             >
-              Send message
+              {t.contact.submit}
             </button>
           </form>
         </Reveal>

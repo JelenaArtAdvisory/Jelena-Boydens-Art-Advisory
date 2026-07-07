@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useT } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Approach", href: "#approach" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Contact", href: "#contact" },
-];
+  { key: "about", href: "#about" },
+  { key: "approach", href: "#approach" },
+  { key: "portfolio", href: "#portfolio" },
+  { key: "contact", href: "#contact" },
+] as const;
 
 export function Header() {
+  const t = useT();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -49,17 +51,18 @@ export function Header() {
         <nav className="hidden items-center gap-9 md:flex">
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className="link-underline text-sm text-black">
-              {link.label}
+              {t.nav[link.key]}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-5 md:flex">
+          <LanguageToggle />
           <Link
             href="#contact"
             className="inline-flex items-center justify-center rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition-transform duration-300 ease-apple hover:scale-[1.03] hover:shadow-soft"
           >
-            Book an introduction
+            {t.nav.cta}
           </Link>
         </div>
 
@@ -100,7 +103,7 @@ export function Header() {
                 onClick={() => setMenuOpen(false)}
                 className="py-3 text-base text-black"
               >
-                {link.label}
+                {t.nav[link.key]}
               </Link>
             ))}
             <Link
@@ -108,8 +111,9 @@ export function Header() {
               onClick={() => setMenuOpen(false)}
               className="mt-3 inline-flex items-center justify-center rounded-full bg-black px-6 py-3.5 text-sm font-medium text-white"
             >
-              Book an introduction
+              {t.nav.cta}
             </Link>
+            <LanguageToggle className="mt-4 self-start" />
           </nav>
         </div>
       </div>

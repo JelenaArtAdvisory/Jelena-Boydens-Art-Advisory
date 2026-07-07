@@ -1,14 +1,37 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
+import { useT } from "@/lib/i18n";
+
+type BeforeAfterSliderProps = {
+  beforeSrc: string;
+  beforeAlt: string;
+  afterSrc: string;
+  afterAlt: string;
+  /** Tailwind aspect-ratio class, e.g. "aspect-[3/4]". */
+  aspect?: string;
+  /** Tailwind max-width class controlling how compact the slider is. */
+  maxWidth?: string;
+  priority?: boolean;
+};
 
 /**
  * Draggable before/after comparison. Pointer Events cover mouse, touch and
  * pen in one code path; a keyboard-operable slider role keeps it accessible.
- * Layers are placeholder blocks for now — swap in real montage photography
- * later by replacing the two inner divs with next/image (see README.md).
+ * Both layers show the same scene at identical framing — one "before" and one
+ * "after". Reused for the interior montage and the portfolio placement.
  */
-export function BeforeAfterSlider() {
+export function BeforeAfterSlider({
+  beforeSrc,
+  beforeAlt,
+  afterSrc,
+  afterAlt,
+  aspect = "aspect-[459/466]",
+  maxWidth = "max-w-sm",
+  priority = false,
+}: BeforeAfterSliderProps) {
+  const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
   const [percent, setPercent] = useState(50);
   const dragging = useRef(false);
@@ -56,31 +79,41 @@ export function BeforeAfterSlider() {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-4xl border border-black/10 sm:aspect-[16/10]"
+      className={`relative mx-auto w-full ${aspect} ${maxWidth} touch-none select-none overflow-hidden rounded-4xl border border-black/10`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={stopDragging}
       onPointerLeave={stopDragging}
     >
-      {/* "After" layer — wall with a framed artwork */}
-      <div className="absolute inset-0 flex items-center justify-center bg-offwhite">
-        <div className="flex h-2/3 w-1/2 items-center justify-center rounded-2xl border-2 border-black/80 bg-cream shadow-soft">
-          <span className="px-4 text-center text-[11px] font-medium uppercase tracking-widest text-muted">
-            [ artwork montage ]
-          </span>
-        </div>
-        <span className="absolute right-5 top-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black">
-          After
+      {/* "After" layer */}
+      <div className="absolute inset-0">
+        <Image
+          src={afterSrc}
+          alt={afterAlt}
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+          priority={priority}
+        />
+        <span className="absolute right-5 top-5 rounded-full bg-white/80 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-black backdrop-blur">
+          {t.slider.after}
         </span>
       </div>
 
-      {/* "Before" layer — empty wall, clipped to the handle position */}
+      {/* "Before" layer, clipped to the handle position */}
       <div
-        className="absolute inset-0 bg-[#EDE7DD]"
+        className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - percent}% 0 0)` }}
       >
-        <span className="absolute left-5 top-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black">
-          Before
+        <Image
+          src={beforeSrc}
+          alt={beforeAlt}
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+        />
+        <span className="absolute left-5 top-5 rounded-full bg-white/80 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-black backdrop-blur">
+          {t.slider.before}
         </span>
       </div>
 
@@ -89,11 +122,11 @@ export function BeforeAfterSlider() {
         className="absolute inset-y-0 flex items-center"
         style={{ left: `${percent}%`, transform: "translateX(-50%)" }}
       >
-        <div className="h-full w-px bg-black" />
+        <div className="h-full w-px bg-white/80 shadow-[0_0_0_1px_rgba(0,0,0,0.15)]" />
         <div
           role="slider"
           tabIndex={0}
-          aria-label="Reveal the artwork montage over the empty wall"
+          aria-label="Drag to compare before and after"
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={Math.round(percent)}

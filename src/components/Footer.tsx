@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useT } from "@/lib/i18n";
 
 export function Footer() {
+  const t = useT();
   const year = new Date().getFullYear();
 
   return (
@@ -11,12 +15,12 @@ export function Footer() {
             Jelena Boydens <span className="text-muted font-normal">· Art Advisory</span>
           </p>
           <p className="mt-1 text-xs text-muted">
-            &copy; {year} Jelena Boydens · VAT BE [ number ]
+            &copy; {year} Jelena Boydens · {t.footer.vat} BE1035559627
           </p>
         </div>
 
         <Link href="/privacy" className="link-underline text-xs text-muted">
-          Privacy policy
+          {t.footer.privacy}
         </Link>
       </div>
     </footer>

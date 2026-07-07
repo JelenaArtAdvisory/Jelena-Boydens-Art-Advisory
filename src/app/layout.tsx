@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { body, heading } from "@/lib/fonts";
+import { body, heading, wordmark } from "@/lib/fonts";
+import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const SITE_URL = "https://www.jelenaboydens.com"; // TODO: update once the domain is live
@@ -36,8 +37,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${body.variable} ${heading.variable} h-full`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+    <html lang="nl" className={`${body.variable} ${heading.variable} ${wordmark.variable} h-full`}>
+      <body className="flex min-h-full flex-col">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

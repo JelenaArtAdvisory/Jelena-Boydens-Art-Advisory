@@ -22,6 +22,8 @@ const config: Config = {
         // paid StudioSimms font later — see src/lib/fonts.ts for how.
         heading: ["var(--font-heading)", "Georgia", "serif"],
         body: ["var(--font-body)", "system-ui", "sans-serif"],
+        // Wordmark: Jost (free stand-in for Coco Gothic) — used for the hero name.
+        wordmark: ["var(--font-wordmark)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         "3xl": "1.5rem",

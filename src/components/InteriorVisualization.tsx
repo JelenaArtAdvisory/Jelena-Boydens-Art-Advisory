@@ -1,29 +1,36 @@
+"use client";
+
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
+import { useT } from "@/lib/i18n";
 
 export function InteriorVisualization() {
+  const t = useT();
   return (
-    <Section id="visualization" tone="cream">
+    <Section id="visualization" tone="white">
       <div className="grid grid-cols-1 items-center gap-14 md:grid-cols-2 md:gap-16">
         <Reveal>
-          <Eyebrow>See it in place</Eyebrow>
+          <Eyebrow>{t.visualization.eyebrow}</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-medium leading-tight tracking-tight text-black sm:text-4xl">
-            A work in your space, before you decide
+            {t.visualization.heading}
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg">
-            Not sure a piece really &lsquo;works&rsquo; above your sofa? I create montages where
-            you see the work at true scale, hanging in your own interior. So you choose with
-            confidence.
+            {t.visualization.body}
           </p>
-          <p className="mt-4 text-sm text-muted">
-            Drag the handle — placeholder wall &amp; artwork shown until real montages are added.
-          </p>
+          <p className="mt-4 text-sm text-muted">{t.visualization.caption}</p>
         </Reveal>
 
         <Reveal delay={100}>
-          <BeforeAfterSlider />
+          <BeforeAfterSlider
+            beforeSrc="/images/montage-without-v3.png"
+            beforeAlt="The same bedroom with an empty wall above the bed"
+            afterSrc="/images/montage-with-v3.png"
+            afterAlt="The bedroom with the artwork hanging above the bed"
+            aspect="aspect-[459/466]"
+            priority
+          />
         </Reveal>
       </div>
     </Section>
