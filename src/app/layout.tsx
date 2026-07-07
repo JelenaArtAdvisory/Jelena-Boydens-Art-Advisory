@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     title: "Jelena Boydens · Art Advisory",
     description: "Kunsthistorisch advies voor particuliere interieurs.",
   },
+  verification: {
+    google: "H5I_yhoaqvONDltLd2kFnkoEDVUy94leAINNxa0rTpA",
+  },
 };
 
 export default function RootLayout({
