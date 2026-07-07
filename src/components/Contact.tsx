@@ -75,7 +75,6 @@ export function Contact() {
               </dd>
             </div>
             <div className="flex gap-2">
-              <dt className="text-muted">{t.contact.labelRegion}</dt>
               <dd>{t.contact.region}</dd>
             </div>
             <div className="flex gap-2">
