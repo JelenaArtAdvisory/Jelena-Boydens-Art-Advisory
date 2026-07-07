@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s — Jelena Boydens Art Advisory",
   },
   description:
-    "Kunsthistorisch advies voor particuliere interieurs in Brugge & West-Vlaanderen. Ik help je echte kunst vinden die past bij je ruimte, je smaak en je budget — met montages die een werk in je huis tonen vóór je koopt.",
+    "Kunsthistorisch advies voor particuliere interieurs in België. Ik help je echte kunst vinden die past bij je ruimte, je smaak en je budget — met montages die een werk in je huis tonen vóór je koopt.",
   keywords: [
     "kunstadvies",
     "art advisory",
