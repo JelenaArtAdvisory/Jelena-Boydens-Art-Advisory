@@ -45,6 +45,43 @@ export const metadata: Metadata = {
   },
 };
 
+// Links "Jelena Boydens" (person) and the business to their social profiles
+// via schema.org sameAs — helps Google treat them as one entity. Add the
+// TikTok URL to both sameAs arrays once available.
+const SOCIAL_PROFILES = [
+  "https://www.instagram.com/learnbylena/",
+  "https://www.youtube.com/@LearnByLena",
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#jelena`,
+      name: "Jelena Boydens",
+      alternateName: "LearnByLena",
+      url: SITE_URL,
+      image: `${SITE_URL}/images/jelena-portrait.jpg`,
+      jobTitle: "Kunsthistorica & kunstadviseur",
+      sameAs: SOCIAL_PROFILES,
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#business`,
+      name: "Jelena Boydens Art Advisory",
+      url: SITE_URL,
+      image: `${SITE_URL}/images/jelena-portrait.jpg`,
+      description: "Kunsthistorisch advies voor particuliere interieurs.",
+      email: "info@boydensartadvisory.com",
+      telephone: "+32468326788",
+      areaServed: "Brugge & West-Vlaanderen",
+      founder: { "@id": `${SITE_URL}/#jelena` },
+      sameAs: SOCIAL_PROFILES,
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,6 +90,10 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${body.variable} ${heading.variable} ${wordmark.variable} h-full`}>
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
