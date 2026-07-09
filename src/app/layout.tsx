@@ -50,6 +50,13 @@ export const metadata: Metadata = {
   verification: {
     google: "H5I_yhoaqvONDltLd2kFnkoEDVUy94leAINNxa0rTpA",
   },
+  icons: {
+    icon: [
+      { url: "/icon.png?v=2", type: "image/png" },
+      { url: "/favicon.ico?v=2", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-icon.png?v=2" }],
+  },
 };
 
 // Links "Jelena Boydens" (person) and the business to their social profiles
