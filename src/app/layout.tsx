@@ -32,13 +32,20 @@ export const metadata: Metadata = {
     siteName: "Jelena Boydens Art Advisory",
     locale: "nl_BE",
     type: "website",
-    // TODO: add an Open Graph image (e.g. /public/og.jpg, 1200x630) and
-    // reference it here once real photography exists: images: ["/og.jpg"]
+    images: [
+      {
+        url: "/images/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Een rustig, minimalistisch interieur met een groot kunstwerk aan de muur",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Jelena Boydens · Art Advisory",
     description: "Kunsthistorisch advies voor particuliere en zakelijke interieurs.",
+    images: ["/images/og.jpg"],
   },
   verification: {
     google: "H5I_yhoaqvONDltLd2kFnkoEDVUy94leAINNxa0rTpA",
